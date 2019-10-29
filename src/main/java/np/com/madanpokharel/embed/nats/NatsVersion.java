@@ -6,7 +6,7 @@ import de.flapdoodle.embed.process.distribution.IVersion;
  * <p>NatsVersion class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 public class NatsVersion implements IVersion {
     /**
@@ -25,14 +25,7 @@ public class NatsVersion implements IVersion {
      * Constant <code>V2_0_0</code>
      */
     public static final NatsVersion V2_0_0 = new NatsVersion("v2.0.0");
-    /**
-     * Constant <code>V1_4_1</code>
-     */
-    public static final NatsVersion V1_4_1 = new NatsVersion("v1.4.1");
-    /**
-     * Constant <code>V1_4_0</code>
-     */
-    public static final NatsVersion V1_4_0 = new NatsVersion("v1.4.0");
+
 
     private final String version;
 
@@ -53,4 +46,8 @@ public class NatsVersion implements IVersion {
         return version;
     }
 
+    @Override
+    public String toString() {
+        return version;
+    }
 }

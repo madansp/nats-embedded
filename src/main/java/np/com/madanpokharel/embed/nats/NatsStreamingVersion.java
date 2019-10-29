@@ -6,7 +6,7 @@ import de.flapdoodle.embed.process.distribution.IVersion;
  * <p>NatsStreamingVersion class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 public class NatsStreamingVersion implements IVersion {
     /**
@@ -46,6 +46,11 @@ public class NatsStreamingVersion implements IVersion {
      */
     @Override
     public String asInDownloadPath() {
+        return version;
+    }
+
+    @Override
+    public String toString() {
         return version;
     }
 

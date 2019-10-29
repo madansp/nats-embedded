@@ -7,7 +7,7 @@ import java.util.Objects;
  * <p>EmbeddedNatsServer class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 public final class EmbeddedNatsServer {
     private EmbeddedNatsConfig config;

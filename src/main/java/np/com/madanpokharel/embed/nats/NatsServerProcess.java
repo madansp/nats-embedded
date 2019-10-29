@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * <p>NatsServerProcess class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServerExecutable, NatsServerProcess> {
 
@@ -64,18 +64,18 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
             throw new IOException("could not start nats proceess");
         }
 
-        setProcessId(getNatsdProcessId(logWatch.getOutput()));
+        setProcessId(getNatsProcessId(logWatch.getOutput()));
 
     }
 
     /**
-     * <p>getNatsdProcessId.</p>
+     * <p>getNatsProcessId.</p>
      *
      * @param output a {@link String} object.
      * @return a int.
      */
-    private int getNatsdProcessId(String output) {
-        Pattern pattern = Pattern.compile("\\[\\d+]", Pattern.MULTILINE);
+    private int getNatsProcessId(String output) {
+        Pattern pattern = Pattern.compile("\\[\\d+]");
         Matcher matcher = pattern.matcher(output);
         if (matcher.find()) {
             String value = matcher.group(0);
@@ -98,7 +98,7 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
 
     private String getSuccessMessage() {
         if (serverConfig.getServerType() == ServerType.NATS_STREAMING)
-            return "Streaming Server is ready";
+            return "----------------------------------";
         else
             return "Server is ready";
     }
@@ -112,7 +112,6 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
             if (!stopped) {
                 stopped = true;
                 if (!sendKillToProcess()) {
-                    System.out.println("trying to kill process");
                     tryKillToProcess();
                 }
                 stopProcess();

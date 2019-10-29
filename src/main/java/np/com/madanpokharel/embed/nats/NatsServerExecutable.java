@@ -11,7 +11,7 @@ import java.io.IOException;
  * <p>NatsServerExecutable class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 final class NatsServerExecutable extends Executable<NatsServerConfig, NatsServerProcess> {
 

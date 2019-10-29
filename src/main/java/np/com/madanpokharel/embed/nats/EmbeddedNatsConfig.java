@@ -22,7 +22,7 @@ import java.util.Objects;
  * <p>EmbeddedNatsConfig class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 public final class EmbeddedNatsConfig {
     private String downloadPath;

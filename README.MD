@@ -1,13 +1,21 @@
-[![Build Status](https://travis-ci.org/madansp/nats-embedded.svg?branch=master)](https://travis-ci.org/madansp/nats-embedded)
+[![Build Status](https://travis-ci.com/madansp/nats-embedded.svg?branch=master)](https://travis-ci.com/madansp/nats-embedded)
 ### Embedded Nats and Streaming Sever
 
 Embedded Nats and Nats Streaming server for integration tests.
 
 ## Usage
-Publishing to maven central is in progress. Clone the source and build locally.
+Add the following dependency to project
 
+```xml
+<dependency>
+   <groupId>np.com.madanpokharel.embed</groupId>
+   <artifactId>nats-embedded</artifactId>
+   <version>0.1.0</version>
+   <scope>test</scope>
+ </dependency>
+```
 
-### Example
+#### Example
 
 Start nats server with defined port 7656.
 
@@ -52,8 +60,8 @@ EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
                                 .withServerType(ServerType.NATS_STREAMING)
                                 .withClusterId(clusterId)
                                 .withRandomPort()
-                                .withConfigParam("--store","FILE")
-                                .withConfigParam("--dir","target/nats")
+                                .withConfigParam("--store","FILE") //custom config parameter
+                                .withConfigParam("--dir","target/nats") //custom config parameter
                                 .withNatsStreamingVersion(NatsStreamingVersion.V0_16_2)
                                 .build()
                 )
@@ -62,4 +70,4 @@ EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
         natsStreamingServer.startServer();
 ```
 ### Dependency
-This library is based on [flapdoodle-oss embed process](https://github.com/flapdoodle-oss/de.flapdoodle.embed.process)
+This library using component from  [flapdoodle-oss](https://github.com/flapdoodle-oss)

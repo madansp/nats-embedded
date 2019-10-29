@@ -9,7 +9,7 @@ import de.flapdoodle.embed.process.runtime.Starter;
  * <p>NatsServerStarter class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 final class NatsServerStarter extends Starter<NatsServerConfig, NatsServerExecutable, NatsServerProcess> {
     /**

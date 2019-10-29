@@ -13,7 +13,7 @@ import java.util.*;
  * <p>NatsServerConfig class.</p>
  *
  * @author Madan Pokharel
- * @version 1.0.0
+ *
  */
 public final class NatsServerConfig implements IExecutableProcessConfig {
 
