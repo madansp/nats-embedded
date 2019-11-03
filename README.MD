@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.com/madansp/nats-embedded.svg?branch=master)](https://travis-ci.com/madansp/nats-embedded)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/madansp/nats-embedded)
 ![GitHub](https://img.shields.io/github/license/madansp/nats-embedded)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/np.com.madanpokharel.embed/nats-embedded/badge.svg?style=plastic)](https://search.maven.org/artifact/np.com.madanpokharel.embed/nats-embedded/)
 ### Embedded Nats and Streaming Sever
 
 Embedded Nats and Nats Streaming server for integration tests.
