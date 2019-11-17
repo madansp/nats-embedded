@@ -39,12 +39,14 @@ Start nats server with defined port 7656.
                 )
                 .build();
         EmbeddedNatsServer natsServer = new EmbeddedNatsServer(config);
+        //start the server
         natsServer.startServer();
 
 //get running port
 System.out.pritnln(natsServer.getRunningPort())
 
-natsStreamingServer.stopServer();
+//stop the server
+natsServer.stopServer();
 ```
 
 Start with default settings. This will download latest version and start server on random port. 
@@ -57,7 +59,7 @@ natsServer.startServer();
 //get running port
 System.out.pritnln(natsServer.getRunningPort())
 
-natsStreamingServer.stopServer();
+natsServer.stopServer();
 
 ```
 Start with custom config params
