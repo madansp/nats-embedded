@@ -19,7 +19,7 @@ public class EmbeddedNatsStreamingTest {
                         new NatsServerConfig.Builder()
                                 .withServerType(ServerType.NATS_STREAMING)
                                 .withPort(port)
-                                .withNatsStreamingVersion(NatsStreamingVersion.V0_16_2)
+                                .withNatsStreamingVersion(NatsStreamingVersion.LATEST)
                                 .build()
                 )
                 .build();

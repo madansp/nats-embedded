@@ -21,7 +21,7 @@ public class EmbeddedNatsTest {
                         new NatsServerConfig.Builder()
                                 .withServerType(ServerType.NATS)
                                 .withPort(port)
-                                .withNatsVersion(NatsVersion.V2_1_0)
+                                .withNatsVersion(NatsVersion.LATEST)
                                 .build()
                 )
                 .build();

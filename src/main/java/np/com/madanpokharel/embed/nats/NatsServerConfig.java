@@ -214,9 +214,9 @@ public final class NatsServerConfig implements IExecutableProcessConfig {
 
             if (Objects.isNull(version)) {
                 if (serverType == ServerType.NATS) {
-                    this.version = NatsVersion.V2_1_0;
+                    this.version = NatsVersion.LATEST;
                 } else {
-                    this.version = NatsStreamingVersion.V0_16_2;
+                    this.version = NatsStreamingVersion.LATEST;
                 }
             }
 

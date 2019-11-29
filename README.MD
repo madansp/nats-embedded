@@ -34,7 +34,7 @@ Start nats server with defined port 7656.
                         new NatsServerConfig.Builder()
                                 .withServerType(ServerType.NATS)
                                 .withPort(7656)
-                                .withNatsVersion(NatsVersion.V2_1_0)
+                                .withNatsVersion(NatsVersion.LATEST)
                                 .build()
                 )
                 .build();
@@ -73,7 +73,7 @@ EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
                                 .withRandomPort()
                                 .withConfigParam("--store","FILE") //custom config parameter
                                 .withConfigParam("--dir","target/nats") //custom config parameter
-                                .withNatsStreamingVersion(NatsStreamingVersion.V0_16_2)
+                                .withNatsStreamingVersion(NatsStreamingVersion.LATEST)
                                 .build()
                 )
                 .build();
@@ -89,7 +89,7 @@ Customizing the download location and extraction path
                         new NatsServerConfig.Builder()
                                 .withServerType(ServerType.NATS)
                                 .withPort(port)
-                                .withNatsVersion(NatsVersion.V2_1_0)
+                                .withNatsVersion(NatsVersion.LATEST)
                                 .build()
                 )
                 .withArtifactStorePath(".custom-download-dir") //custom download location
