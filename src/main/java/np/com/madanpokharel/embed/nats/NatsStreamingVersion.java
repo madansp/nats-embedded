@@ -6,13 +6,18 @@ import de.flapdoodle.embed.process.distribution.IVersion;
  * <p>NatsStreamingVersion class.</p>
  *
  * @author Madan Pokharel
- *
  */
 public class NatsStreamingVersion implements IVersion {
     /**
      * Constant <code>LATEST</code>
      */
-    public static final NatsStreamingVersion LATEST = new NatsStreamingVersion("v0.16.2");
+    public static final NatsStreamingVersion LATEST = new NatsStreamingVersion("v0.17.0");
+
+    /**
+     * Constant <code>V0_17_0</code>
+     */
+    public static final NatsStreamingVersion V0_17_0 = new NatsStreamingVersion("v0.17.0");
+
     /**
      * Constant <code>V0_16_2</code>
      */

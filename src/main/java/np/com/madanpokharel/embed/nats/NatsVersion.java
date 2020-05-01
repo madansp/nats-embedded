@@ -6,13 +6,22 @@ import de.flapdoodle.embed.process.distribution.IVersion;
  * <p>NatsVersion class.</p>
  *
  * @author Madan Pokharel
- *
  */
 public class NatsVersion implements IVersion {
     /**
      * Constant <code>LATEST</code>
      */
-    public static final NatsVersion LATEST = new NatsVersion("v2.1.2");
+    public static final NatsVersion LATEST = new NatsVersion("v2.1.6");
+
+    /**
+     * Constant <code>V2_1_6</code>
+     */
+    public static final NatsVersion V2_1_6 = new NatsVersion("v2.1.6");
+
+    /**
+     * Constant <code>V2_1_4</code>
+     */
+    public static final NatsVersion V2_1_4 = new NatsVersion("v2.1.4");
 
     /**
      * Constant <code>V2_1_2</code>
