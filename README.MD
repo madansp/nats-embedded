@@ -1,4 +1,3 @@
-![Travis (.com)](https://img.shields.io/travis/com/madansp/nats-embedded?style=for-the-badge&logo=appveyor)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/madansp/nats-embedded?style=for-the-badge&logo=appveyor)
 ![GitHub](https://img.shields.io/github/license/madansp/nats-embedded?style=for-the-badge&logo=appveyor)
 ![Maven Central](https://img.shields.io/maven-central/v/np.com.madanpokharel.embed/nats-embedded?style=for-the-badge&logo=appveyor)
