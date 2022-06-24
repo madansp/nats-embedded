@@ -1,19 +1,19 @@
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.IRuntimeConfig;
-import de.flapdoodle.embed.process.config.RuntimeConfigBuilder;
+import de.flapdoodle.embed.process.config.RuntimeConfig;
 import de.flapdoodle.embed.process.config.io.ProcessOutput;
-import de.flapdoodle.embed.process.config.store.DownloadConfigBuilder;
-import de.flapdoodle.embed.process.config.store.IDownloadConfig;
+import de.flapdoodle.embed.process.config.store.DownloadConfig;
+import de.flapdoodle.embed.process.config.store.ImmutableDownloadConfig;
+import de.flapdoodle.embed.process.extract.DirectoryAndExecutableNaming;
 import de.flapdoodle.embed.process.extract.UUIDTempNaming;
 import de.flapdoodle.embed.process.io.Processors;
-import de.flapdoodle.embed.process.io.directories.IDirectory;
+import de.flapdoodle.embed.process.io.directories.Directory;
 import de.flapdoodle.embed.process.io.directories.PropertyOrPlatformTempDir;
 import de.flapdoodle.embed.process.io.directories.UserHome;
 import de.flapdoodle.embed.process.io.progress.StandardConsoleProgressListener;
-import de.flapdoodle.embed.process.runtime.ICommandLinePostProcessor;
+import de.flapdoodle.embed.process.runtime.CommandLinePostProcessor;
 import de.flapdoodle.embed.process.store.Downloader;
-import de.flapdoodle.embed.process.store.ExtractedArtifactStoreBuilder;
+import de.flapdoodle.embed.process.store.ExtractedArtifactStore;
 import de.flapdoodle.embed.process.store.IArtifactStore;
 
 import java.util.Objects;
@@ -27,8 +27,8 @@ import java.util.Objects;
 public final class EmbeddedNatsConfig {
     private String downloadPath;
     private String downloadUserAgent;
-    private IDirectory artifactStorePath;
-    private IDirectory extractDirectory;
+    private Directory artifactStorePath;
+    private Directory extractDirectory;
     private NatsServerConfig serverConfig;
 
     private EmbeddedNatsConfig(String downloadPath, String downloadUserAgent,
@@ -75,24 +75,24 @@ public final class EmbeddedNatsConfig {
     /**
      * <p>getRunTimeConfig.</p>
      *
-     * @return a {@link de.flapdoodle.embed.process.config.IRuntimeConfig} object.
+     * @return a {@link de.flapdoodle.embed.process.config.RuntimeConfig} object.
      */
-    IRuntimeConfig getRunTimeConfig() {
+    RuntimeConfig getRunTimeConfig() {
 
         ProcessOutput processOutput = new ProcessOutput(Processors.silent(),
                 Processors.namedConsole("[" + serverConfig.getServerType().getServerName() + "]"), Processors.console());
 
-        return new RuntimeConfigBuilder()
+        return RuntimeConfig.builder()
                 .processOutput(processOutput)
-                .commandLinePostProcessor(new ICommandLinePostProcessor.Noop())
+                .commandLinePostProcessor(new CommandLinePostProcessor.Noop())
                 .artifactStore(artifactStore())
                 .build();
     }
 
-    private IDownloadConfig downloadConfig() {
-        DownloadConfigBuilder downloadConfigBuilder = new DownloadConfigBuilder();
+    private DownloadConfig downloadConfig() {
+        ImmutableDownloadConfig.Builder downloadConfigBuilder = DownloadConfig.builder();
         downloadConfigBuilder.fileNaming(new UUIDTempNaming())
-                .downloadPath(downloadPath)
+                .downloadPath((__) -> downloadPath)
                 .progressListener(new StandardConsoleProgressListener())
                 .artifactStorePath(artifactStorePath)
                 .downloadPrefix(serverConfig.getServerType().getServerName() + "-download")
@@ -105,14 +105,12 @@ public final class EmbeddedNatsConfig {
     }
 
     private IArtifactStore artifactStore() {
-        return new ExtractedArtifactStoreBuilder()
-                .extractDir(extractDirectory)
-                .extractExecutableNaming((prefix, postfix) -> postfix)
-                .tempDir(new PropertyOrPlatformTempDir())
-                .executableNaming(new UUIDTempNaming())
-                .download(downloadConfig())
-                .downloader(new Downloader())
-                .build();
+        return ExtractedArtifactStore.builder()
+            .extraction(DirectoryAndExecutableNaming.of(extractDirectory, (prefix, postfix) -> postfix))
+            .temp(DirectoryAndExecutableNaming.of(PropertyOrPlatformTempDir.defaultInstance(), new UUIDTempNaming()))
+            .downloadConfig(downloadConfig())
+            .downloader(Downloader.platformDefault())
+            .build();
     }
 
     /**

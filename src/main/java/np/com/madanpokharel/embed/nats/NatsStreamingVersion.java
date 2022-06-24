@@ -1,13 +1,13 @@
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.distribution.IVersion;
+import de.flapdoodle.embed.process.distribution.Version;
 
 /**
  * <p>NatsStreamingVersion class.</p>
  *
  * @author Madan Pokharel
  */
-public class NatsStreamingVersion implements IVersion {
+public class NatsStreamingVersion implements Version {
     /**
      * Constant <code>LATEST</code>
      */

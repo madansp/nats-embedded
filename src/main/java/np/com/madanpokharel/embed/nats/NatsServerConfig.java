@@ -1,8 +1,8 @@
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.IExecutableProcessConfig;
-import de.flapdoodle.embed.process.config.ISupportConfig;
-import de.flapdoodle.embed.process.distribution.IVersion;
+import de.flapdoodle.embed.process.config.ExecutableProcessConfig;
+import de.flapdoodle.embed.process.config.SupportConfig;
+import de.flapdoodle.embed.process.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
 import org.apache.commons.lang3.StringUtils;
 
@@ -15,9 +15,9 @@ import java.util.*;
  * @author Madan Pokharel
  *
  */
-public final class NatsServerConfig implements IExecutableProcessConfig {
+public final class NatsServerConfig implements ExecutableProcessConfig {
 
-    private IVersion version;
+    private Version version;
     private int port;
     private String host;
     private String clusterId;
@@ -28,14 +28,14 @@ public final class NatsServerConfig implements IExecutableProcessConfig {
     /**
      * <p>Constructor for NatsServerConfig.</p>
      *
-     * @param version      a {@link de.flapdoodle.embed.process.distribution.IVersion} object.
+     * @param version      a {@link de.flapdoodle.embed.process.distribution.Version} object.
      * @param port         a int.
      * @param host         a {@link java.lang.String} object.
      * @param clusterId    a {@link java.lang.String} object.
      * @param serverType   a {@link np.com.madanpokharel.embed.nats.ServerType} object.
      * @param configParams a {@link java.util.Map} object.
      */
-    public NatsServerConfig(IVersion version, int port, String host,
+    public NatsServerConfig(Version version, int port, String host,
                             String clusterId, ServerType serverType, Map<String, String> configParams) {
         this.version = version;
         this.port = port;
@@ -58,7 +58,7 @@ public final class NatsServerConfig implements IExecutableProcessConfig {
      * {@inheritDoc}
      */
     @Override
-    public IVersion version() {
+    public Version version() {
         return version;
     }
 
@@ -66,30 +66,17 @@ public final class NatsServerConfig implements IExecutableProcessConfig {
      * {@inheritDoc}
      */
     @Override
-    public ISupportConfig supportConfig() {
-        return new ISupportConfig() {
-            @Override
-            public String getName() {
-                return "nats-streaming-server";
-            }
-
-            @Override
-            public String getSupportUrl() {
-                return "https://github.com/madansp/nats-embedded";
-            }
-
-            @Override
-            public long maxStopTimeoutMillis() {
-                return 5000;
-            }
-
-            @Override
-            public String messageOnException(Class<?> aClass, Exception e) {
-                return e.getMessage();
-            }
-        };
+    public SupportConfig supportConfig() {
+        return SupportConfig.builder().name("nats-streaming-server")
+            .supportUrl("https://github.com/madansp/nats-embedded")
+            .messageOnException((clazz, e) -> e.getMessage())
+            .build();
     }
 
+    @Override
+    public OptionalLong stopTimeoutInMillis() {
+        return OptionalLong.of(5000L);
+    }
 
     /**
      * <p>getConfigList.</p>
@@ -148,7 +135,7 @@ public final class NatsServerConfig implements IExecutableProcessConfig {
     }
 
     public static class Builder {
-        private IVersion version;
+        private Version version;
         private int port;
         private String host;
         private String clusterId;
