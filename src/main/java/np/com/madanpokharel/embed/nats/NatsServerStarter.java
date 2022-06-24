@@ -1,8 +1,8 @@
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.IRuntimeConfig;
+import de.flapdoodle.embed.process.config.RuntimeConfig;
 import de.flapdoodle.embed.process.distribution.Distribution;
-import de.flapdoodle.embed.process.extract.IExtractedFileSet;
+import de.flapdoodle.embed.process.extract.ExtractedFileSet;
 import de.flapdoodle.embed.process.runtime.Starter;
 
 /**
@@ -15,9 +15,9 @@ final class NatsServerStarter extends Starter<NatsServerConfig, NatsServerExecut
     /**
      * <p>Constructor for NatsServerStarter.</p>
      *
-     * @param config a {@link de.flapdoodle.embed.process.config.IRuntimeConfig} object.
+     * @param config a {@link de.flapdoodle.embed.process.config.RuntimeConfig} object.
      */
-    public NatsServerStarter(IRuntimeConfig config) {
+    public NatsServerStarter(RuntimeConfig config) {
         super(config);
     }
 
@@ -25,7 +25,7 @@ final class NatsServerStarter extends Starter<NatsServerConfig, NatsServerExecut
      * {@inheritDoc}
      */
     @Override
-    protected NatsServerExecutable newExecutable(NatsServerConfig config, Distribution distribution, IRuntimeConfig iRuntimeConfig, IExtractedFileSet iExtractedFileSet) {
+    protected NatsServerExecutable newExecutable(NatsServerConfig config, Distribution distribution, RuntimeConfig iRuntimeConfig, ExtractedFileSet iExtractedFileSet) {
         return new NatsServerExecutable(distribution, config, iRuntimeConfig, iExtractedFileSet);
     }
 }

@@ -1,14 +1,15 @@
 package np.com.madanpokharel.embed.nats;
 
+import de.flapdoodle.embed.process.config.store.DistributionPackage;
 import de.flapdoodle.embed.process.config.store.FileSet;
 import de.flapdoodle.embed.process.config.store.FileType;
-import de.flapdoodle.embed.process.config.store.IPackageResolver;
+import de.flapdoodle.embed.process.config.store.PackageResolver;
 import de.flapdoodle.embed.process.distribution.ArchiveType;
-import de.flapdoodle.embed.process.distribution.BitSize;
 import de.flapdoodle.embed.process.distribution.Distribution;
-import de.flapdoodle.embed.process.distribution.Platform;
+import de.flapdoodle.os.BitSize;
+import de.flapdoodle.os.Platform;
 
-final class NatsPackageResolver implements IPackageResolver {
+final class NatsPackageResolver implements PackageResolver {
     private ServerType serverType;
 
     /**
@@ -23,33 +24,26 @@ final class NatsPackageResolver implements IPackageResolver {
     /**
      * {@inheritDoc}
      */
-    @Override
-    public FileSet getFileSet(Distribution distribution) {
-        return getExecutableFileSet(distribution);
-    }
-
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public ArchiveType getArchiveType(Distribution distribution) {
-        return ArchiveType.ZIP;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public String getPath(Distribution distribution) {
-        String version = distribution.getVersion().asInDownloadPath();
-        String arch = getArch(distribution.getBitsize());
-        String platform = getPlatform(distribution.getPlatform());
+        String version = distribution.version().asInDownloadPath();
+        String arch = getArch(distribution.platform().architecture().bitSize());
+        String platform = getPlatform(distribution.platform());
         return version + "/" + serverType.getServerName() + "-" + version + '-' + platform + '-' + arch + ".zip";
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public DistributionPackage packageFor(Distribution distribution) {
+        return DistributionPackage.builder().archiveType(ArchiveType.ZIP)
+            .fileSet(getExecutableFileSet(distribution))
+            .archivePath(getPath(distribution))
+            .build();
+    }
+
     private String getPlatform(Platform platform) {
-        switch (platform) {
+        switch (platform.operatingSystem()) {
             case OS_X:
                 return "darwin";
             case Linux:
@@ -92,7 +86,7 @@ final class NatsPackageResolver implements IPackageResolver {
 
     private FileSet getExecutableFileSet(Distribution distribution) {
         String executableName = serverType.getServerName();
-        switch (distribution.getPlatform()) {
+        switch (distribution.platform().operatingSystem()) {
             case Linux:
             case OS_X:
                 break;
@@ -101,7 +95,7 @@ final class NatsPackageResolver implements IPackageResolver {
                 break;
             default:
                 throw new IllegalArgumentException(
-                        "Unknown platform " + distribution.getPlatform());
+                        "Unknown platform " + distribution.platform());
         }
         return FileSet.builder()
                 .addEntry(FileType.Executable, executableName)

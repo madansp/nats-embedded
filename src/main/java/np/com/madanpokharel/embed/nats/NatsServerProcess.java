@@ -1,9 +1,9 @@
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.IRuntimeConfig;
-import de.flapdoodle.embed.process.config.io.ProcessOutput;
+import de.flapdoodle.embed.process.config.RuntimeConfig;
+import de.flapdoodle.embed.process.config.process.ProcessOutput;
 import de.flapdoodle.embed.process.distribution.Distribution;
-import de.flapdoodle.embed.process.extract.IExtractedFileSet;
+import de.flapdoodle.embed.process.extract.ExtractedFileSet;
 import de.flapdoodle.embed.process.io.LogWatchStreamProcessor;
 import de.flapdoodle.embed.process.io.Processors;
 import de.flapdoodle.embed.process.io.StreamToLineProcessor;
@@ -27,7 +27,7 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
     private boolean stopped;
     private NatsServerConfig serverConfig;
 
-    NatsServerProcess(Distribution distribution, NatsServerConfig config, IRuntimeConfig runtimeConfig,
+    NatsServerProcess(Distribution distribution, NatsServerConfig config, RuntimeConfig runtimeConfig,
                       NatsServerExecutable executable) throws IOException {
         super(distribution, config, runtimeConfig, executable);
     }
@@ -36,7 +36,7 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
      * {@inheritDoc}
      */
     @Override
-    protected List<String> getCommandLine(Distribution distribution, NatsServerConfig config, IExtractedFileSet files) {
+    protected List<String> getCommandLine(Distribution distribution, NatsServerConfig config, ExtractedFileSet files) {
         this.serverConfig = config;
 
         List<String> command = new ArrayList<>(Collections.singletonList(Files.fileOf(files.baseDir(),
@@ -50,18 +50,18 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
      * {@inheritDoc}
      */
     @Override
-    protected void onAfterProcessStart(ProcessControl process, IRuntimeConfig runtimeConfig) throws IOException {
-        ProcessOutput outputConfig = runtimeConfig.getProcessOutput();
+    protected void onAfterProcessStart(ProcessControl process, RuntimeConfig runtimeConfig) {
+        ProcessOutput outputConfig = runtimeConfig.processOutput();
 
         LogWatchStreamProcessor logWatch = new LogWatchStreamProcessor(getSuccessMessage(),
-                knownFailureMessages(), StreamToLineProcessor.wrap(outputConfig.getError()));
+                knownFailureMessages(), StreamToLineProcessor.wrap(outputConfig.error()));
 
         Processors.connect(process.getError(), logWatch);
 
         logWatch.waitForResult(5000);
 
         if (!logWatch.isInitWithSuccess()) {
-            throw new IOException("could not start nats proceess");
+            throw new RuntimeException("could not start nats proceess");
         }
 
         setProcessId(getNatsProcessId(logWatch.getOutput()));
