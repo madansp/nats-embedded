@@ -1,5 +1,5 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/madansp/nats-embedded?style=for-the-badge&logo=appveyor)
-![GitHub](https://img.shields.io/github/license/madansp/nats-embedded?style=for-the-badge&logo=appveyor)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg?style=for-the-badge&logo=appveyor)](https://opensource.org/licenses/Apache-2.0)
 ![Maven Central](https://img.shields.io/maven-central/v/np.com.madanpokharel.embed/nats-embedded?style=for-the-badge&logo=appveyor)
 ### Embedded Nats and Streaming Sever
 
