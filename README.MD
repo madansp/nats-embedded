@@ -20,7 +20,7 @@ For Maven:
 ```
 For Gradle(Groovy Style):
 ``` groovy
-testCompile group: 'np.com.madanpokharel.embed', name: 'nats-embedded', version: '1.1.0'
+testCompile group: 'np.com.madanpokharel.embed', name: 'nats-embedded', version: '2.1.0'
 ```
 
 For Gradle
@@ -32,7 +32,7 @@ For Bazel
 maven_jar(
     name = "nats-embedded",
     artifact = "np.com.madanpokharel.embed:nats-embedded:2.1.0",
-    sha1 = "83fbb182260f4c098c05290eb786fc7be6a25237",
+    sha1 = "0235584434668a4dfbb9b7a0211cf3c9642e99bd",
 )
 ```
 
