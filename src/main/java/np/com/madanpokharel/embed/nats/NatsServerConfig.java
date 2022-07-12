@@ -29,7 +29,6 @@ import java.util.*;
  * <p>NatsServerConfig class.</p>
  *
  * @author Madan Pokharel
- *
  */
 public final class NatsServerConfig implements ExecutableProcessConfig {
 
@@ -51,8 +50,12 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
      * @param serverType   a {@link np.com.madanpokharel.embed.nats.ServerType} object.
      * @param configParams a {@link java.util.Map} object.
      */
-    public NatsServerConfig(Version version, int port, String host,
-                            String clusterId, ServerType serverType, Map<String, String> configParams) {
+    public NatsServerConfig(Version version,
+                            int port,
+                            String host,
+                            String clusterId,
+                            ServerType serverType,
+                            Map<String, String> configParams) {
         this.version = version;
         this.port = port;
         this.host = host;
@@ -84,9 +87,9 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
     @Override
     public SupportConfig supportConfig() {
         return SupportConfig.builder().name("nats-streaming-server")
-            .supportUrl("https://github.com/madansp/nats-embedded")
-            .messageOnException((clazz, e) -> e.getMessage())
-            .build();
+                .supportUrl("https://github.com/madansp/nats-embedded")
+                .messageOnException((clazz, e) -> e.getMessage())
+                .build();
     }
 
     @Override
@@ -113,12 +116,12 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
             configMap.add(clusterId);
         }
 
-        if (!configMap.isEmpty()) {
-            params.forEach((k, v) -> {
-                configMap.add(k);
+        params.forEach((k, v) -> {
+            configMap.add(k);
+            if (!v.isEmpty()) {
                 configMap.add(v);
-            });
-        }
+            }
+        });
 
         return configMap;
     }
@@ -212,8 +215,27 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
             return this;
         }
 
+        public Builder withEnableJetStream(String storeDir) {
+            configParams.put("-js", "");
+            configParams.put("-sd", storeDir);
+            return this;
+        }
+
+        public Builder withEnableJetStream() {
+            configParams.put("-js", "");
+            return this;
+        }
+
+        public Builder withConfigurationFile(String filePath) {
+            configParams.put("-c", filePath);
+            return this;
+        }
+
+
         public NatsServerConfig build() {
-            Objects.requireNonNull(serverType, "server type cannot be null");
+            if (serverType == null) {
+                serverType = ServerType.NATS;
+            }
 
             if (Objects.isNull(version)) {
                 if (serverType == ServerType.NATS) {
