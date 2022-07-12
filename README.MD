@@ -14,13 +14,26 @@ For Maven:
 <dependency>
    <groupId>np.com.madanpokharel.embed</groupId>
    <artifactId>nats-embedded</artifactId>
-   <version>2.0.0</version>
+   <version>2.1.0</version>
    <scope>test</scope>
  </dependency>
 ```
-For Gradle:
+For Gradle(Groovy Style):
 ``` groovy
 testCompile group: 'np.com.madanpokharel.embed', name: 'nats-embedded', version: '1.1.0'
+```
+
+For Gradle
+```kotlin
+implementation("np.com.madanpokharel.embed:nats-embedded:2.1.0")
+```
+For Bazel
+```
+maven_jar(
+    name = "nats-embedded",
+    artifact = "np.com.madanpokharel.embed:nats-embedded:2.1.0",
+    sha1 = "83fbb182260f4c098c05290eb786fc7be6a25237",
+)
 ```
 
 #### Example
@@ -31,7 +44,7 @@ Start nats server with defined port 7656.
  EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
                 .withNatsServerConfig(
                         new NatsServerConfig.Builder()
-                                .withServerType(ServerType.NATS)
+                                .withServerType(ServerType.NATS) //Can be omitted, default is Nats
                                 .withPort(7656)
                                 .withNatsVersion(NatsVersion.LATEST)
                                 .build()
@@ -132,6 +145,22 @@ EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
                 .withExtractDirectory(".custom-extract-dir") // location for extracting downloaded zip file
                 .build();
 
+```
+Using custom nats configuration file
+```java
+new NatsServerConfig.Builder()
+        .withConfigurationFile("custom-config-file.conf")
+        .build()
+```
+Enabling JetStream
+```java
+ new NatsServerConfig.Builder()
+        .withEnableJetStream() //without store location
+        .build() 
+        
+new NatsServerConfig.Builder()
+        .withEnableJetStream("target") //with store location
+        .build()
 ```
 ### Dependency
 This library using component from  [flapdoodle-oss](https://github.com/flapdoodle-oss)

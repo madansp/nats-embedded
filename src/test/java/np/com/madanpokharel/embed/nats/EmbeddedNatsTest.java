@@ -35,8 +35,8 @@ public class EmbeddedNatsTest {
         EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
                 .withNatsServerConfig(
                         new NatsServerConfig.Builder()
-                                .withServerType(ServerType.NATS)
                                 .withPort(port)
+                                .withEnableJetStream()
                                 .withNatsVersion(NatsVersion.LATEST)
                                 .build()
                 )
