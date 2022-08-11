@@ -69,7 +69,7 @@ EmbeddedNatsServer natsServer = new EmbeddedNatsServer(config);
 natsServer.startServer();
 
 //get running port
-System.out.pritnln(natsServer.getRunningPort())
+System.out.println(natsServer.getRunningPort())
 
 natsServer.stopServer();
 
