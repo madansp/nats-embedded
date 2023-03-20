@@ -27,7 +27,82 @@ public class NatsVersion implements Version {
     /**
      * Constant <code>LATEST</code>
      */
-    public static final NatsVersion LATEST = new NatsVersion("v2.8.4");
+    public static final NatsVersion LATEST = new NatsVersion("v2.9.15");
+
+    /**
+     * Constant <code>V2_9_15</code>
+     */
+    public static final NatsVersion V2_9_15 = new NatsVersion("v2.9.15");
+
+    /**
+     * Constant <code>V2_9_14</code>
+     */
+    public static final NatsVersion V2_9_14 = new NatsVersion("v2.9.14");
+
+    /**
+     * Constant <code>V2_9_12</code>
+     */
+    public static final NatsVersion V2_9_12 = new NatsVersion("v2.9.12");
+
+    /**
+     * Constant <code>V2_9_11</code>
+     */
+    public static final NatsVersion V2_9_11 = new NatsVersion("v2.9.11");
+
+    /**
+     * Constant <code>V2_9_10</code>
+     */
+    public static final NatsVersion V2_9_10 = new NatsVersion("v2.9.10");
+
+    /**
+     * Constant <code>V2_9_9</code>
+     */
+    public static final NatsVersion V2_9_9 = new NatsVersion("v2.9.9");
+
+    /**
+     * Constant <code>V2_9_8</code>
+     */
+    public static final NatsVersion V2_9_8 = new NatsVersion("v2.9.8");
+
+    /**
+     * Constant <code>V2_9_7</code>
+     */
+    public static final NatsVersion V2_9_7 = new NatsVersion("v2.9.7");
+
+    /**
+     * Constant <code>V2_9_6</code>
+     */
+    public static final NatsVersion V2_9_6 = new NatsVersion("v2.9.6");
+
+    /**
+     * Constant <code>V2_9_5</code>
+     */
+    public static final NatsVersion V2_9_5 = new NatsVersion("v2.9.5");
+
+    /**
+     * Constant <code>V2_9_4</code>
+     */
+    public static final NatsVersion V2_9_4 = new NatsVersion("v2.9.4");
+
+    /**
+     * Constant <code>V2_9_3</code>
+     */
+    public static final NatsVersion V2_9_3 = new NatsVersion("v2.9.3");
+
+    /**
+     * Constant <code>V2_9_2</code>
+     */
+    public static final NatsVersion V2_9_2 = new NatsVersion("v2.9.2");
+
+    /**
+     * Constant <code>V2_9_1</code>
+     */
+    public static final NatsVersion V2_9_1 = new NatsVersion("v2.9.1");
+
+    /**
+     * Constant <code>V2_9_0</code>
+     */
+    public static final NatsVersion V2_9_0 = new NatsVersion("v2.9.0");
 
     /**
      * Constant <code>V2_8_4</code>

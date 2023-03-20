@@ -26,7 +26,7 @@ public enum ServerType {
     NATS("nats-server"),
     NATS_STREAMING("nats-streaming-server");
 
-    private String serverName;
+    private final String serverName;
 
     /**
      * <p>Constructor for ServerType.</p>

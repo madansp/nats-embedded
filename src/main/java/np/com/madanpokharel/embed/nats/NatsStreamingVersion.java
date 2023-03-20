@@ -27,7 +27,17 @@ public class NatsStreamingVersion implements Version {
     /**
      * Constant <code>LATEST</code>
      */
-    public static final NatsStreamingVersion LATEST = new NatsStreamingVersion("v0.24.6");
+    public static final NatsStreamingVersion LATEST = new NatsStreamingVersion("v0.25.3");
+
+    /**
+     * Constant <code>V0_25_3</code>
+     */
+    public static final NatsStreamingVersion V0_25_3 = new NatsStreamingVersion("v0.25.3");
+
+    /**
+     * Constant <code>V0_25_2</code>
+     */
+    public static final NatsStreamingVersion V0_25_2 = new NatsStreamingVersion("v0.25.2");
 
     /**
      * Constant <code>V0_24_6</code>

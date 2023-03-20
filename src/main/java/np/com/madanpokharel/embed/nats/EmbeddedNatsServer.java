@@ -26,7 +26,7 @@ import java.util.Objects;
  *
  */
 public final class EmbeddedNatsServer {
-    private EmbeddedNatsConfig config;
+    private final EmbeddedNatsConfig config;
 
     private NatsServerProcess process;
     private NatsServerExecutable executable;
@@ -75,7 +75,7 @@ public final class EmbeddedNatsServer {
     /**
      * <p>getRunningPort.</p>
      *
-     * @return a int.
+     * @return an int.
      */
     public int getRunningPort() {
         return config.getServerConfig().getPort();

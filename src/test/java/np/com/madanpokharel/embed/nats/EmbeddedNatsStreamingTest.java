@@ -66,7 +66,7 @@ public class EmbeddedNatsStreamingTest {
     @Test
     public void testNatsStreamingPublishSubscribe() throws Exception {
 
-        String clusterId = "my-cluster" + UUID.randomUUID().toString();
+        String clusterId = "my-cluster" + UUID.randomUUID();
         EmbeddedNatsConfig config = new EmbeddedNatsConfig.Builder()
                 .withNatsServerConfig(
                         new NatsServerConfig.Builder()
