@@ -32,19 +32,19 @@ import java.util.*;
  */
 public final class NatsServerConfig implements ExecutableProcessConfig {
 
-    private Version version;
-    private int port;
-    private String host;
-    private String clusterId;
-    private ServerType serverType;
-    private Map<String, String> params = new HashMap<>();
+    private final Version version;
+    private final int port;
+    private final String host;
+    private final String clusterId;
+    private final ServerType serverType;
+    private final Map<String, String> params = new HashMap<>();
 
 
     /**
      * <p>Constructor for NatsServerConfig.</p>
      *
      * @param version      a {@link de.flapdoodle.embed.process.distribution.Version} object.
-     * @param port         a int.
+     * @param port         an int.
      * @param host         a {@link java.lang.String} object.
      * @param clusterId    a {@link java.lang.String} object.
      * @param serverType   a {@link np.com.madanpokharel.embed.nats.ServerType} object.
@@ -67,7 +67,7 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
     /**
      * <p>Getter for the field <code>port</code>.</p>
      *
-     * @return a int.
+     * @return an int.
      */
     public int getPort() {
         return port;

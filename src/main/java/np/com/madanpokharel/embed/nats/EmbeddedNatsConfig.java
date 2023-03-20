@@ -41,11 +41,11 @@ import java.util.Objects;
  *
  */
 public final class EmbeddedNatsConfig {
-    private String downloadPath;
-    private String downloadUserAgent;
-    private Directory artifactStorePath;
-    private Directory extractDirectory;
-    private NatsServerConfig serverConfig;
+    private final String downloadPath;
+    private final String downloadUserAgent;
+    private final Directory artifactStorePath;
+    private final Directory extractDirectory;
+    private final NatsServerConfig serverConfig;
 
     private EmbeddedNatsConfig(String downloadPath, String downloadUserAgent,
                                String artifactStorePath, String extractDirectory, NatsServerConfig serverConfig) {

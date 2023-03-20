@@ -77,7 +77,7 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
         logWatch.waitForResult(5000);
 
         if (!logWatch.isInitWithSuccess()) {
-            throw new RuntimeException("could not start nats proceess");
+            throw new RuntimeException("could not start nats process");
         }
 
         setProcessId(getNatsProcessId(logWatch.getOutput()));
@@ -88,7 +88,7 @@ final class NatsServerProcess extends AbstractProcess<NatsServerConfig, NatsServ
      * <p>getNatsProcessId.</p>
      *
      * @param output a {@link String} object.
-     * @return a int.
+     * @return an int.
      */
     private int getNatsProcessId(String output) {
         Pattern pattern = Pattern.compile("\\[\\d+]");

@@ -26,7 +26,7 @@ import de.flapdoodle.os.BitSize;
 import de.flapdoodle.os.Platform;
 
 final class NatsPackageResolver implements PackageResolver {
-    private ServerType serverType;
+    private final ServerType serverType;
 
     /**
      * <p>Constructor for NatsPackageResolver.</p>
