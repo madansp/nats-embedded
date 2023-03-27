@@ -14,25 +14,25 @@ For Maven:
 <dependency>
    <groupId>np.com.madanpokharel.embed</groupId>
    <artifactId>nats-embedded</artifactId>
-   <version>2.1.0</version>
+   <version>2.1.1</version>
    <scope>test</scope>
  </dependency>
 ```
 For Gradle(Groovy Style):
 ``` groovy
-testCompile group: 'np.com.madanpokharel.embed', name: 'nats-embedded', version: '2.1.0'
+testCompile group: 'np.com.madanpokharel.embed', name: 'nats-embedded', version: '2.1.1'
 ```
 
 For Gradle
 ```kotlin
-implementation("np.com.madanpokharel.embed:nats-embedded:2.1.0")
+implementation("np.com.madanpokharel.embed:nats-embedded:2.1.1")
 ```
 For Bazel
 ```
 maven_jar(
     name = "nats-embedded",
-    artifact = "np.com.madanpokharel.embed:nats-embedded:2.1.0",
-    sha1 = "0235584434668a4dfbb9b7a0211cf3c9642e99bd",
+    artifact = "np.com.madanpokharel.embed:nats-embedded:2.1.1",
+    sha1 = "f0bcda1e80f4db4a4e63b3d5ae952da4f755c636",
 )
 ```
 
