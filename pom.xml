@@ -19,7 +19,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    
+
     <name>nats-embedded</name>
     <description>Embedded Nats and Nats Streaming(https://nats.io) server for integration testing</description>
     <url>https://github.com/madansp/nats-embedded</url>
@@ -132,7 +132,7 @@
 
     <profiles>
         <profile>
-            <id>release</id>
+            <id>mavenRelease</id>
             <build>
                 <plugins>
                     <plugin>
@@ -197,18 +197,30 @@
                     </plugin>
                 </plugins>
             </build>
+            <distributionManagement>
+                <snapshotRepository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+                </snapshotRepository>
+                <repository>
+                    <id>ossrh</id>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
+
+            </distributionManagement>
+        </profile>
+        <profile>
+            <id>githubRelease</id>
+            <distributionManagement>
+                <repository>
+                    <id>github</id>
+                    <name>GitHub Nats Embedded package</name>
+                    <url>https://maven.pkg.github.com/madansp/nats-embedded</url>
+                </repository>
+            </distributionManagement>
         </profile>
     </profiles>
 
-    <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
+
 
 </project>
