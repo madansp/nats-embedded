@@ -1,0 +1,31 @@
+name: release-workflow
+run-name: Release run ${{ github.run_number }}
+on:
+  workflow_dispatch:
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Setup Java
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # As good as any other, see: https://github.com/actions/setup-java#supported-distributions
+          java-package: 'jdk'
+          java-version: '21'
+          check-latest: true
+          server-id: 'ossrh'
+          server-username: OSSRH_USERNAME
+          server-password: OSSRH_PASSWORD
+          gpg-private-key: ${{ secrets.YOUR_GPG_PRIVATE_KEY }}
+          gpg-passphrase: SIGN_KEY_PASS
+          cache: 'maven'
+      - name: Build & Deploy
+        run: |
+          mvn -U -B clean deploy -P release
+        env:
+          SIGN_KEY_PASS: ${{ secrets.YOUR_GPG_PRIVATE_KEY_PASSPHRASE }}
+          OSSRH_USERNAME: ${{ secrets.YOUR_SONATYPE_USER }}
+          OSSRH_PASSWORD: ${{ secrets.YOUR_SONATYPE_PW }}e
