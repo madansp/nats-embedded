@@ -16,16 +16,13 @@
 
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.store.DistributionPackage;
 import de.flapdoodle.embed.process.config.store.FileSet;
 import de.flapdoodle.embed.process.config.store.FileType;
-import de.flapdoodle.embed.process.config.store.PackageResolver;
-import de.flapdoodle.embed.process.distribution.ArchiveType;
 import de.flapdoodle.embed.process.distribution.Distribution;
 import de.flapdoodle.os.BitSize;
 import de.flapdoodle.os.Platform;
 
-final class NatsPackageResolver implements PackageResolver {
+final class NatsPackageResolver {
     private final ServerType serverType;
 
     /**
@@ -39,6 +36,9 @@ final class NatsPackageResolver implements PackageResolver {
 
     /**
      * {@inheritDoc}
+     *
+     * @param distribution a {@link de.flapdoodle.embed.process.distribution.Distribution} object
+     * @return a {@link java.lang.String} object
      */
     public String getPath(Distribution distribution) {
         String version = distribution.version().asInDownloadPath();
@@ -47,19 +47,8 @@ final class NatsPackageResolver implements PackageResolver {
         return version + "/" + serverType.getServerName() + "-" + version + '-' + platform + '-' + arch + ".zip";
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public DistributionPackage packageFor(Distribution distribution) {
-        return DistributionPackage.builder().archiveType(ArchiveType.ZIP)
-            .fileSet(getExecutableFileSet(distribution))
-            .archivePath(getPath(distribution))
-            .build();
-    }
-
     private String getPlatform(Platform platform) {
-        switch (platform.operatingSystem()) {
+        switch (platform.operatingSystem().type()) {
             case OS_X:
                 return "darwin";
             case Linux:
@@ -100,9 +89,9 @@ final class NatsPackageResolver implements PackageResolver {
         return arch;
     }
 
-    private FileSet getExecutableFileSet(Distribution distribution) {
+    FileSet getExecutableFileSet(Distribution distribution) {
         String executableName = serverType.getServerName();
-        switch (distribution.platform().operatingSystem()) {
+        switch (distribution.platform().operatingSystem().type()) {
             case Linux:
             case OS_X:
                 break;

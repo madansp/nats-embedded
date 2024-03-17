@@ -22,6 +22,7 @@ import de.flapdoodle.embed.process.distribution.Version;
  * <p>NatsStreamingVersion class.</p>
  *
  * @author Madan Pokharel
+ * @version $Id: $Id
  */
 public class NatsStreamingVersion implements Version {
     /**
@@ -167,14 +168,13 @@ public class NatsStreamingVersion implements Version {
         this.version = version;
     }
 
-    /**
-     * {@inheritDoc}
-     */
+    /** {@inheritDoc} */
     @Override
     public String asInDownloadPath() {
         return version;
     }
 
+    /** {@inheritDoc} */
     @Override
     public String toString() {
         return version;

@@ -16,44 +16,31 @@
 
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.RuntimeConfig;
-import de.flapdoodle.embed.process.config.io.ProcessOutput;
-import de.flapdoodle.embed.process.config.store.DownloadConfig;
-import de.flapdoodle.embed.process.config.store.ImmutableDownloadConfig;
-import de.flapdoodle.embed.process.extract.DirectoryAndExecutableNaming;
-import de.flapdoodle.embed.process.extract.UUIDTempNaming;
-import de.flapdoodle.embed.process.io.Processors;
-import de.flapdoodle.embed.process.io.directories.Directory;
-import de.flapdoodle.embed.process.io.directories.PropertyOrPlatformTempDir;
-import de.flapdoodle.embed.process.io.directories.UserHome;
-import de.flapdoodle.embed.process.io.progress.StandardConsoleProgressListener;
-import de.flapdoodle.embed.process.runtime.CommandLinePostProcessor;
-import de.flapdoodle.embed.process.store.Downloader;
-import de.flapdoodle.embed.process.store.ExtractedArtifactStore;
-import de.flapdoodle.embed.process.store.IArtifactStore;
-
 import java.util.Objects;
 
 /**
  * <p>EmbeddedNatsConfig class.</p>
  *
  * @author Madan Pokharel
- *
+ * @version $Id: $Id
  */
 public final class EmbeddedNatsConfig {
-    private final String downloadPath;
-    private final String downloadUserAgent;
-    private final Directory artifactStorePath;
-    private final Directory extractDirectory;
+    final String downloadPath;
+    final String downloadUserAgent;
+    final String artifactStorePath;
+    final String extractDirectory;
     private final NatsServerConfig serverConfig;
 
-    private EmbeddedNatsConfig(String downloadPath, String downloadUserAgent,
-                               String artifactStorePath, String extractDirectory, NatsServerConfig serverConfig) {
+    private EmbeddedNatsConfig(String downloadPath,
+                               String downloadUserAgent,
+                               String artifactStorePath,
+                               String extractDirectory,
+                               NatsServerConfig serverConfig) {
         this.downloadPath = downloadPath;
         this.downloadUserAgent = downloadUserAgent;
-        this.artifactStorePath = new UserHome(artifactStorePath);
-        this.extractDirectory = new UserHome(extractDirectory);
         this.serverConfig = serverConfig;
+        this.artifactStorePath = artifactStorePath;
+        this.extractDirectory = extractDirectory;
     }
 
     /**
@@ -88,46 +75,6 @@ public final class EmbeddedNatsConfig {
                 .build();
     }
 
-    /**
-     * <p>getRunTimeConfig.</p>
-     *
-     * @return a {@link de.flapdoodle.embed.process.config.RuntimeConfig} object.
-     */
-    RuntimeConfig getRunTimeConfig() {
-
-        ProcessOutput processOutput = new ProcessOutput(Processors.silent(),
-                Processors.namedConsole("[" + serverConfig.getServerType().getServerName() + "]"), Processors.console());
-
-        return RuntimeConfig.builder()
-                .processOutput(processOutput)
-                .commandLinePostProcessor(new CommandLinePostProcessor.Noop())
-                .artifactStore(artifactStore())
-                .build();
-    }
-
-    private DownloadConfig downloadConfig() {
-        ImmutableDownloadConfig.Builder downloadConfigBuilder = DownloadConfig.builder();
-        downloadConfigBuilder.fileNaming(new UUIDTempNaming())
-                .downloadPath((__) -> downloadPath)
-                .progressListener(new StandardConsoleProgressListener())
-                .artifactStorePath(artifactStorePath)
-                .downloadPrefix(serverConfig.getServerType().getServerName() + "-download")
-                .userAgent(downloadUserAgent);
-
-        downloadConfigBuilder.packageResolver(new NatsPackageResolver(serverConfig.getServerType()));
-
-
-        return downloadConfigBuilder.build();
-    }
-
-    private IArtifactStore artifactStore() {
-        return ExtractedArtifactStore.builder()
-            .extraction(DirectoryAndExecutableNaming.of(extractDirectory, (prefix, postfix) -> postfix))
-            .temp(DirectoryAndExecutableNaming.of(PropertyOrPlatformTempDir.defaultInstance(), new UUIDTempNaming()))
-            .downloadConfig(downloadConfig())
-            .downloader(Downloader.platformDefault())
-            .build();
-    }
 
     /**
      * <p>Getter for the field <code>serverConfig</code>.</p>
@@ -146,7 +93,7 @@ public final class EmbeddedNatsConfig {
 
         public Builder() {
             this.artifactStorePath = ".embedded-nats";
-            this.extractDirectory = ".embedded-nats/extracted";
+            this.extractDirectory = "extracted";
             this.downloadUserAgent = "Mozilla/5.0 (compatible; Nats Embedded; +https://github.com/madansp/nats-embedded)";
         }
 
