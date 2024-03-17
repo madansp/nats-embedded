@@ -28,7 +28,122 @@ public class NatsVersion implements Version {
     /**
      * Constant <code>LATEST</code>
      */
-    public static final NatsVersion LATEST = new NatsVersion("v2.9.15");
+    public static final NatsVersion LATEST = new NatsVersion("v2.10.12");
+
+    /**
+     * Constant <code>V2_10_12</code>
+     */
+    public static final NatsVersion V2_10_12 = new NatsVersion("v2.10.12");
+
+    /**
+     * Constant <code>V2_10_11</code>
+     */
+    public static final NatsVersion V2_10_11 = new NatsVersion("v2.10.11");
+
+    /**
+     * Constant <code>V2_10_10</code>
+     */
+    public static final NatsVersion V2_10_10 = new NatsVersion("v2.10.10");
+
+    /**
+     * Constant <code>V2_10_9</code>
+     */
+    public static final NatsVersion V2_10_9 = new NatsVersion("v2.10.9");
+
+    /**
+     * Constant <code>V2_10_8</code>
+     */
+    public static final NatsVersion V2_10_8 = new NatsVersion("v2.10.8");
+
+    /**
+     * Constant <code>V2_10_7</code>
+     */
+    public static final NatsVersion V2_10_7 = new NatsVersion("v2.10.7");
+
+    /**
+     * Constant <code>V2_10_6</code>
+     */
+    public static final NatsVersion V2_10_6 = new NatsVersion("v2.10.6");
+
+    /**
+     * Constant <code>V2_10_5</code>
+     */
+    public static final NatsVersion V2_10_5 = new NatsVersion("v2.10.5");
+
+    /**
+     * Constant <code>V2_10_4</code>
+     */
+    public static final NatsVersion V2_10_4 = new NatsVersion("v2.10.4");
+
+    /**
+     * Constant <code>V2_10_3</code>
+     */
+    public static final NatsVersion V2_10_3 = new NatsVersion("v2.10.3");
+
+    /**
+     * Constant <code>V2_10_2</code>
+     */
+    public static final NatsVersion V2_10_2 = new NatsVersion("v2.10.2");
+
+    /**
+     * Constant <code>V2_10_1</code>
+     */
+    public static final NatsVersion V2_10_1 = new NatsVersion("v2.10.1");
+
+    /**
+     * Constant <code>V2_10_0</code>
+     */
+    public static final NatsVersion V2_10_0 = new NatsVersion("v2.10.0");
+
+    /**
+     * Constant <code>V2_9_25</code>
+     */
+    public static final NatsVersion V2_9_25 = new NatsVersion("v2.9.25");
+
+    /**
+     * Constant <code>V2_9_24</code>
+     */
+    public static final NatsVersion V2_9_24 = new NatsVersion("v2.9.24");
+
+    /**
+     * Constant <code>V2_9_23</code>
+     */
+    public static final NatsVersion V2_9_23 = new NatsVersion("v2.9.23");
+
+    /**
+     * Constant <code>V2_9_22</code>
+     */
+    public static final NatsVersion V2_9_22 = new NatsVersion("v2.9.22");
+
+    /**
+     * Constant <code>V2_9_21</code>
+     */
+    public static final NatsVersion V2_9_21 = new NatsVersion("v2.9.21");
+
+    /**
+     * Constant <code>V2_9_20</code>
+     */
+    public static final NatsVersion V2_9_20 = new NatsVersion("v2.9.20");
+
+    /**
+     * Constant <code>V2_9_19</code>
+     */
+    public static final NatsVersion V2_9_19 = new NatsVersion("v2.9.19");
+
+    /**
+     * Constant <code>V2_9_18</code>
+     */
+    public static final NatsVersion V2_9_18 = new NatsVersion("v2.9.18");
+
+    /**
+     * Constant <code>V2_9_17</code>
+     */
+    public static final NatsVersion V2_9_17 = new NatsVersion("v2.9.17");
+
+    /**
+     * Constant <code>V2_9_16</code>
+     */
+    public static final NatsVersion V2_9_16 = new NatsVersion("v2.9.16");
 
     /**
      * Constant <code>V2_9_15</code>
@@ -318,13 +433,17 @@ public class NatsVersion implements Version {
         this.version = version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String asInDownloadPath() {
         return version;
     }
 
-    /** {@inheritDoc} */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public String toString() {
         return version;
