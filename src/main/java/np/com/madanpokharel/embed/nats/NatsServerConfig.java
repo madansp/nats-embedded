@@ -16,21 +16,23 @@
 
 package np.com.madanpokharel.embed.nats;
 
-import de.flapdoodle.embed.process.config.ExecutableProcessConfig;
 import de.flapdoodle.embed.process.config.SupportConfig;
 import de.flapdoodle.embed.process.distribution.Version;
 import de.flapdoodle.embed.process.runtime.Network;
+import de.flapdoodle.net.Net;
 import org.apache.commons.lang3.StringUtils;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.util.*;
 
 /**
  * <p>NatsServerConfig class.</p>
  *
  * @author Madan Pokharel
+ * @version $Id: $Id
  */
-public final class NatsServerConfig implements ExecutableProcessConfig {
+public final class NatsServerConfig {
 
     private final Version version;
     private final int port;
@@ -75,27 +77,13 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
 
     /**
      * {@inheritDoc}
+     *
+     * @return a {@link de.flapdoodle.embed.process.distribution.Version} object
      */
-    @Override
     public Version version() {
         return version;
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SupportConfig supportConfig() {
-        return SupportConfig.builder().name("nats-streaming-server")
-                .supportUrl("https://github.com/madansp/nats-embedded")
-                .messageOnException((clazz, e) -> e.getMessage())
-                .build();
-    }
-
-    @Override
-    public OptionalLong stopTimeoutInMillis() {
-        return OptionalLong.of(5000L);
-    }
 
     /**
      * <p>getConfigList.</p>
@@ -159,7 +147,7 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
         private String host;
         private String clusterId;
         private ServerType serverType;
-        private Map<String, String> configParams = new HashMap<>();
+        private final Map<String, String> configParams = new HashMap<>();
 
         public Builder() {
             this.port = 4222;
@@ -168,7 +156,8 @@ public final class NatsServerConfig implements ExecutableProcessConfig {
 
         public Builder withRandomPort() {
             try {
-                this.port = Network.getFreeServerPort();
+                InetAddress localHost = Net.getLocalHost();
+                this.port = Net.freeServerPort(localHost);
             } catch (IOException ex) {
                 throw new RuntimeException("unbale to allocate random port");
             }
