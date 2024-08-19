@@ -28,7 +28,27 @@ public class NatsVersion implements Version {
     /**
      * Constant <code>LATEST</code>
      */
-    public static final NatsVersion LATEST = new NatsVersion("v2.10.12");
+    public static final NatsVersion LATEST = new NatsVersion("v2.10.18");
+
+    /**
+     * Constant <code>V2_10_18</code>
+     */
+    public static final NatsVersion V2_10_18 = new NatsVersion("v2.10.18");
+
+    /**
+     * Constant <code>V2_10_17</code>
+     */
+    public static final NatsVersion V2_10_17 = new NatsVersion("v2.10.17");
+
+    /**
+     * Constant <code>V2_10_16</code>
+     */
+    public static final NatsVersion V2_10_16 = new NatsVersion("v2.10.16");
+
+    /**
+     * Constant <code>V2_10_14</code>
+     */
+    public static final NatsVersion V2_10_14 = new NatsVersion("v2.10.14");
 
     /**
      * Constant <code>V2_10_12</code>
