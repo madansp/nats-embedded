@@ -73,7 +73,7 @@
 
         <junit.version>4.13.2</junit.version>
         <hamcrest.version>1.3</hamcrest.version>
-        <protobuf-java.version>3.22.0</protobuf-java.version>
+        <protobuf-java.version>3.25.5</protobuf-java.version>
         <de.flapdoodle.os.version>1.7.2</de.flapdoodle.os.version>
     </properties>
 
